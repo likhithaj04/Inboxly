@@ -1,0 +1,114 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String           @id @default(cuid())
+  googleId       String           @unique
+  name           String
+  email          String           @unique
+  createdAt      DateTime         @default(now())
+  googleAccount  GoogleAccount?
+  keywordStat    KeywordStat[]
+  userPreferenve UserPreference[]
+  emailSync      EmailSync?
+  savedEmails    SavedEmails[]
+  temporaryemail TemporaryEmail[]
+}
+
+model GoogleAccount {
+  id           String   @id @default(cuid())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String   @unique
+  accessToken  String
+  refreshToken String
+  expiryDate   BigInt
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model KeywordStat {
+  id      String @id @default(cuid())
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId  String
+  keyword String
+
+  occurrences Int @default(0)
+  read        Int @default(0)
+  unread      Int @default(0)
+  ignored     Int @default(0)
+  replied     Int @default(0)
+  important   Int @default(0)
+
+  @@unique([userId, keyword])
+}
+
+model UserPreference {
+  id                  String @id @default(cuid())
+  user                User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId              String
+  userPreferedKeyword String
+
+  @@unique([userId, userPreferedKeyword])
+}
+
+model EmailSync {
+  id            String    @id @default(cuid())
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String    @unique
+  lastCheckedAt DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model SavedEmails {
+  id          String    @id @default(cuid())
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  gmailId     String?
+  threadId    String?
+  from        String?
+  to          String?
+  subject     String
+  body        String
+  score       Float
+  priority    String?
+  emailDate   DateTime?
+  isImportant Boolean
+  createdAt   DateTime  @default(now())
+
+  @@unique([userId, gmailId])
+}
+
+model TemporaryEmail {
+  id String @id @default(cuid())
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  gmailId   String
+  threadId  String?
+  to        String?
+  from      String
+  subject   String?
+  snippet   String?
+  body      String?
+  priority  String
+  score     Float
+  emailDate DateTime?
+  createdAt DateTime  @default(now())
+  expiresAt DateTime
+
+  @@unique([userId, gmailId])
+}
