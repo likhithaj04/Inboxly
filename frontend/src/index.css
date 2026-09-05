@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme{
+    --color-blues:#0E0B1D;
+    --color-creme:#FFE7D6;
+
+    --font-fraunces: "Fraunces", serif;
+  --font-caveat:"Caveat", cursive;
+  --font-source: "Source Sans 3", sans-serif;
+}
+
