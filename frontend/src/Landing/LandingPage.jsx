@@ -1,22 +1,15 @@
-import React from 'react'
 import maglass from '../assets/mglass.webm'
+import { handleLogin } from '../services/auth';
+import Navbar from '../components/NAvbar';
 
 export default function LandingPage() {
+  
+
   return (
     <div className='w-auto bg-creme min-h-screen'>
 
-      <div className='flex p-2 justify-between md:mr-28'>
-        <div className='p-2 md:ml-90'>
-          <h1 className='font-black text-4xl text-blues font-fraunces'>EMAIL-AGENT</h1>
-        </div>
-        <div className='p-4'>
-          <ul className='flex gap-12 justify-center text-black font-bold font-source'>
-            <li><a href='/'>HOME</a></li>
-            <li><a href='/about'>ABOUT</a></li>
-            <li><a href='/home'>MAILS</a></li>
-          </ul>
-        </div>
-      </div>
+           <Navbar />
+
 
       <div className='border-b border-black  ml-auto h-1 my-3'></div>
 
@@ -38,7 +31,7 @@ export default function LandingPage() {
             Nothing gets thrown out. It just moves to a smaller pile.
           </p>
           <div className='flex gap-3'>
-            <button className='bg-slate-900 text-creme p-5 rounded-bl-2xl rounded-tr-2xl'>Connect Your Gmail</button>
+            <button className='bg-slate-900 text-creme p-5 rounded-bl-2xl rounded-tr-2xl hover:cursor-pointer' onClick={handleLogin}>Connect Your Gmail</button>
             <button className='underline underline-offset-8 text-black italic'>See how it decides</button>
           </div>
         </div>
@@ -164,7 +157,7 @@ export default function LandingPage() {
         </p>
         <div className='flex gap-4'>
            <p className='font-caveat text-2xl text-amber-900'>— now go find them</p>
-        <button className='bg-slate-900 text-creme p-5 rounded-bl-2xl rounded-tr-2xl w-fit'>Connect Your Gmail</button>
+        <button className='bg-slate-900 text-creme p-5 rounded-bl-2xl rounded-tr-2xl w-fit hover:cursor-pointer' onClick={handleLogin}>Connect Your Gmail</button>
         </div>
        
       </div>

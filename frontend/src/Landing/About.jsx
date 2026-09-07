@@ -1,22 +1,13 @@
-import React from 'react'
+import Navbar from '../components/NAvbar';
+import { handleLogin } from '../services/auth';
+
 
 export default function About() {
+
   return (
      <div className='w-auto bg-creme min-h-screen'>
 
-      {/* NAV */}
-      <div className='flex p-2 justify-between md:mr-28'>
-        <div className='p-2 md:ml-90'>
-          <h1 className='font-black text-4xl text-blues font-fraunces'>EMAIL-AGENT</h1>
-        </div>
-        <div className='p-4'>
-          <ul className='flex gap-12 justify-center text-black font-bold font-source'>
-            <li><a href='/'>HOME</a></li>
-            <li><a href='' className='border-b-2 border-black'>ABOUT</a></li>
-            <li><a href=''>MAILS</a></li>
-          </ul>
-        </div>
-      </div>
+     <Navbar/>
             <div className='flex justify-between px-20 py-6 border-t border-black text-sm text-amber-950 opacity-70 font-source'></div>
 
       {/* PAGE HEAD */}
@@ -155,7 +146,7 @@ export default function About() {
           The three emails that actually matter today are already sitting in your inbox. This just puts them on top.
         </p>
         <p className='font-caveat text-2xl text-amber-900'>— go see it for yourself</p>
-        <button className='bg-slate-900 text-creme p-5 rounded-bl-2xl rounded-tr-2xl w-fit'>Connect Your Gmail</button>
+        <button className='bg-slate-900 text-creme p-5 rounded-bl-2xl rounded-tr-2xl w-fit hover:cursor-pointer' onClick={handleLogin}>Connect Your Gmail</button>
       </div>
     </div>
 
