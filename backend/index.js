@@ -21,7 +21,8 @@ app.use("/email", apiLimiter, userMailRouter);
 app.use("/user", apiLimiter, preferenceRouter);
 app.use("/", apiLimiter, gmailRouter);
 
-app.listen(8080, () => {
-    console.log('port running');
-})
+const PORT = process.env.PORT || 8080;
 
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

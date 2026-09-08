@@ -125,13 +125,15 @@ router.get("/google/callback", authLimiter, async (req, res) => {
     )
     // console.log(jwt_token);
 
-    res.cookie('token', jwt_token, {
-      httpOnly: true, // Prevents JavaScript from reading the cookie
-      secure: false,   // Ensures cookie is sent only over HTTPS //true in prod
-      sameSite: 'strict',
-      maxAge: 7200000
-    }
-    )
+   const isProduction = process.env.NODE_ENV === "production";
+
+res.cookie("token", jwt_token, {
+  httpOnly: true,
+  secure: isProduction,
+  sameSite: isProduction ? "none" : "strict",
+  maxAge: 7200000
+});
+    
     res.redirect('http://localhost:5173/home'); 
     // res.status(200).json({ message: "Login successful" })
 
@@ -218,12 +220,14 @@ router.post("/demoLogin", async (req, res) => {
       }
     );
 
-    res.cookie("token", jwt_token, {
-      httpOnly: true,
-      secure: false,       // true in production with HTTPS
-      sameSite: "strict",
-      maxAge: 2 * 60 * 60 * 1000
-    });
+   const isProduction = process.env.NODE_ENV === "production";
+
+res.cookie("token", jwt_token, {
+  httpOnly: true,
+  secure: isProduction,
+  sameSite: isProduction ? "none" : "strict",
+  maxAge: 7200000
+});
 
     res.status(200).json({
       message: "Demo login successful",
