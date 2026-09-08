@@ -10,7 +10,8 @@ import preferenceRouter from './routes/preferenceRoute.js'
 import userMailRouter from './routes/userMailRoute.js'
 import { apiLimiter } from './Middleware/rateLimitter.js'
 
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }))
+// app.use(cors({ origin: 'http://localhost:5173', credentials: true }))
+app.use(cors({ origin: 'https://inboxly-steel.vercel.app/', credentials: true }))
 
 app.use(express.json())
 app.use(cookieParser())
