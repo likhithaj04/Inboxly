@@ -17,7 +17,7 @@ export default function SavedMails() {
         setEmails(sorted)
       } catch (err) {
         toast.error("please try again")
-        console.log(err);
+        // console.log(err);
 
       }
     }
