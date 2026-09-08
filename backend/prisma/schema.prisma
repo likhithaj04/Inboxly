@@ -20,12 +20,14 @@ model User {
   name           String
   email          String           @unique
   createdAt      DateTime         @default(now())
+  isDemo Boolean  @default(false)
   googleAccount  GoogleAccount?
   keywordStat    KeywordStat[]
   userPreferenve UserPreference[]
   emailSync      EmailSync?
   savedEmails    SavedEmails[]
   temporaryemail TemporaryEmail[]
+  demoEmail  DemoEmail[]
 }
 
 model GoogleAccount {
@@ -109,4 +111,28 @@ model TemporaryEmail {
   expiresAt DateTime
 
   @@unique([userId, gmailId])
+}
+
+model DemoEmail {
+  id          String   @id @default(cuid())
+user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+
+  gmailId     String   @unique
+  threadId    String?
+
+  to          String?
+  from        String
+  subject     String?
+  snippet     String?
+  body        String?
+
+  score       Float
+  priority    String?
+
+  date   DateTime?
+
+  isImportant Boolean  @default(false)
+
+  createdAt   DateTime @default(now())
 }

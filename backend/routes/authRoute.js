@@ -11,7 +11,7 @@ const router = Router();
 
 router.get("/google", authLimiter, (req, res) => {
   try {
-    console.log("auth1 hit");
+    // console.log("auth1 hit");
 
     const authurl = authclient.generateAuthUrl({
       access_type: 'offline',
@@ -33,7 +33,7 @@ router.get("/google", authLimiter, (req, res) => {
 })
 router.get("/google/callback", authLimiter, async (req, res) => {
   try {
-    console.log("Auth hit");
+    // console.log("Auth hit");
     const { code } = req.query;
     // console.log("code recived", code)
 
@@ -155,10 +155,11 @@ router.post("/logout",(req,res)=>{
 
 router.get("/me", authMiddleware, async (req, res) => {
   try {
+// console.log(req.user.userId);
 
     const user = await prisma.user.findUnique({
       where: {
-        id: req.user.id
+        id: req.user.userId
       },
       select: {
         id: true,
@@ -184,6 +185,59 @@ router.get("/me", authMiddleware, async (req, res) => {
 
   }
 })
+
+
+//demo user route
+
+
+router.post("/demoLogin", async (req, res) => {
+
+  const {email}=req.body
+  try {
+
+    const demouser = await prisma.user.findUnique({
+      where: {
+        email: email
+      }
+    });
+
+    if (!demouser) {
+      return res.status(404).json({
+        message: "Demo user not found"
+      });
+    }
+
+    const jwt_token = jwt.sign(
+      {
+        userId: demouser.id,
+        email: demouser.email
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "7d"
+      }
+    );
+
+    res.cookie("token", jwt_token, {
+      httpOnly: true,
+      secure: false,       // true in production with HTTPS
+      sameSite: "strict",
+      maxAge: 2 * 60 * 60 * 1000
+    });
+
+    res.status(200).json({
+      message: "Demo login successful",
+      isDemo:true
+    });
+
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({
+      message: "Authentication failed"
+    });
+  }
+});
 
 
 export default router;

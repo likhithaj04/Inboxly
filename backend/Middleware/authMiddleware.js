@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 
 const authMiddleware=(req,res,next)=>{
     try{
-        console.log("middleware hit");
+        // console.log("middleware hit");
         
         const token=req.cookies.token;
         // console.log(token);

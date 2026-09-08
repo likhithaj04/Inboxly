@@ -3,6 +3,7 @@ const router=Router()
 
 import analyzeEmails from "../services/emailBehaviourService.js";
 import authMiddleware from "../Middleware/authMiddleware.js";
+import prisma from "../config/dbCongfig.js";
 
 // import emailFilterService from "../services/emailFilterService.js";
 
@@ -10,7 +11,7 @@ import authMiddleware from "../Middleware/authMiddleware.js";
 // import { google } from "googleapis";
 // import  getGoogleAuthClient from '../services/authService.js'
 // import fetchInboxEmails from "../services/gmailService.js";
-// import retrieveKeywordStat from "../services/keywordStatService.js";
+import retrieveKeywordStat from "../services/keywordStatService.js";
 // import updateKeywordStats from "../services/keywordUpdateService.js";
 // import getEmailSync from '../services/emailSyncService.js'
 
@@ -37,6 +38,22 @@ return res.status(200).json({
 });
 })
 
+router.get("/api/demoemail",authMiddleware,async(req,res)=>{
 
+  const userId=req.userId;
+
+  const emails=await prisma.demoEmail.findMany({
+    where:{
+      userId:userId
+    }
+  })
+
+  
+return res.status(200).json({
+    success: true,
+    emails: emails  
+  })
+  
+})
 
 export default router;

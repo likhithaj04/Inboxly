@@ -9,11 +9,14 @@ import About from './Landing/About'
 import Dashboard from './pages/Dashboard'
 import SavedMaills from './pages/SavedMaills'
 import TemporaryMails from './pages/TemporaryMails'
+import { ToastContainer } from 'react-toastify';
+
 
 function App() {
   return (
-  
+  <>
 <Routes>
+
   <Route path='/' element={<LandingPage/>}/>
   <Route path='/about' element={<About/>}/>
   <Route path='/login' element={<Login/>} />
@@ -27,8 +30,9 @@ function App() {
 
 </Route>
 </Routes>
+        <ToastContainer position="top-right" autoClose={3000} />
 
-    
+    </>
   )
 }
 

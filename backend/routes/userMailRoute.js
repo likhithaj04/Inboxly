@@ -11,7 +11,7 @@ import { summaryLimiter } from '../Middleware/rateLimitter.js'
 
 router.post("/savemail", authMiddleware, async (req, res) => {
     try {
-        console.log("hit");
+        // console.log("hit");
 
         const userId = req.user.userId
         const {
@@ -39,7 +39,7 @@ router.post("/savemail", authMiddleware, async (req, res) => {
                 isImportant: true
             }
         })
-        console.log(data);
+        // console.log(data);
         const keywords = retrieveKeywordStat(
             data.subject,
             data.body
@@ -65,7 +65,7 @@ router.post("/saveTempMail", authMiddleware, async (req, res) => {
 
     try {
 
-        console.log("save email hit");
+        // console.log("save email hit");
 
         const userId = req.user.userId;
 
@@ -132,7 +132,7 @@ router.post("/saveTempMail", authMiddleware, async (req, res) => {
 
     } catch (err) {
 
-        console.log(err);
+        // console.log(err);
 
         res.status(500).json({
             message: "Failed to save email"
@@ -151,7 +151,7 @@ router.get("/getemail", authMiddleware, async (req, res) => {
         })
         res.status(200).json({ message: "Successfully fetched", data: savedMails })
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         res.status(401).json({ message: "Failed to fetch data" })
 
     }
@@ -180,9 +180,9 @@ try {
 router.delete("/deletemail/:gmailId", authMiddleware, async (req, res) => {
     const { gmailId } = req.params;
     const userid = req.user.userId;
-    console.log(gmailId);
+    // console.log(gmailId);
 
-    console.log(" delete mail hit");
+    // console.log(" delete mail hit");
 
     try {
         const deleted = await prisma.savedEmails.delete({
@@ -193,7 +193,7 @@ router.delete("/deletemail/:gmailId", authMiddleware, async (req, res) => {
                 }
             }
         })
-        console.log("Deleted:");
+        // console.log("Deleted:");
 
         res.status(200).json({
             message: "Email deleted successfully",
@@ -211,12 +211,22 @@ router.delete("/deletemail/:gmailId", authMiddleware, async (req, res) => {
 export default router;
 
 router.post("/summary", summaryLimiter, authMiddleware, async (req, res) => {
+    try{
     const userid = req.user.userId
     const { subject, body, emailid } = req.body;
     console.log(userid, subject);
 
     const summary = await getSummary(emailid, subject, body)
     return res.status(201).json({ message: "Summary provided", data: summary, emailid })
-    console.log(summary);
+    // console.log(summary);
+    }
+
+    catch (err) {
+        // console.log(err);
+
+        res.status(500).json({
+            message: "Failed to fetch summary"
+        });
+    }
 
 })

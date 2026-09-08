@@ -1,4 +1,4 @@
-import Navbar from '../components/NAvbar';
+import Navbar from '../components/Navbar';
 import { handleLogin } from '../services/auth';
 
 
@@ -8,14 +8,14 @@ export default function About() {
      <div className='w-auto bg-creme min-h-screen'>
 
      <Navbar/>
-            <div className='flex justify-between px-20 py-6 border-t border-black text-sm text-amber-950 opacity-70 font-source'></div>
+            <div className='flex justify-between md:px-20 md:py-6 border-t border-black text-sm text-amber-950 opacity-70 font-source'></div>
 
       {/* PAGE HEAD */}
-            <div className="flex justify-center items-center lg:gap-40 px-20 flex-wrap md:mb-8">
+            <div className="flex justify-center items-center lg:gap-40 md:px-20 flex-wrap md:mb-8">
 
       <div className='flex flex-col gap-4 px-20 pt-16 pb-12 max-w-3xl'>
-        <p className='font-caveat text-3xl -rotate-2 text-amber-900'>what this actually is —</p>
-        <h1 className='font-fraunces font-semibold text-5xl text-black leading-tight'>
+        <p className='font-caveat md:text-3xl -rotate-2 text-amber-900'>what this actually is —</p>
+        <h1 className='font-fraunces font-semibold text-xl md:text-5xl text-black leading-tight'>
           An inbox that sorts itself, without ever guessing in the dark.
         </h1>
         <p className='font-source text-xl opacity-60 max-w-xl'>
@@ -23,12 +23,12 @@ export default function About() {
         </p>
       </div>
 
-      <div className='border-t-2 border-black'></div>
+      <div className='md:border-t-2 border-black'></div>
 </div>
       <div className='border-b border-black w-3/4 mx-auto h-0.5 my-3'></div>
 
       {/* BELIEF SECTION */}
-            <div className="flex justify-center items-center lg:gap-40 px-20 flex-wrap md:mb-8">
+            <div className="flex justify-center items-center gap-2 lg:gap-40 md:px-20 flex-wrap md:mb-8">
 
       <div className='flex lg:gap-16 px-20 py-14 flex-wrap'>
         <h2 className='font-fraunces font-semibold text-3xl text-black w-64 shrink-0'>
@@ -49,9 +49,9 @@ export default function About() {
       <div className='border-b border-black w-3/4 mx-auto h-0.5 my-3'></div>
 
       {/* PRINCIPLES */}
-            <div className="flex justify-center items-center lg:gap-40 px-20 flex-wrap md:mb-8">
+            <div className="flex justify-center items-center lg:gap-40 md:px-20 flex-wrap md:mb-8">
 
-      <div className='flex flex-col gap-10 px-20 py-14'>
+      <div className='flex flex-col gap-2 px-4 md:gap-10 md:px-20 py-14'>
         <h2 className='font-fraunces font-semibold text-3xl text-black'>How it decides</h2>
 
         <div className='flex flex-col'>
@@ -141,12 +141,12 @@ export default function About() {
       {/* CLOSING */}
             <div className="flex flex-col justify-center items-center lg:gap-40 px-20 flex-wrap">
 
-      <div className='flex flex-col gap-6 px-20 py-20'>
+      <div className='flex flex-col gap-6 px-4 md:px-20 py-20'>
         <p className='font-fraunces italic text-2xl max-w-xl text-black'>
           The three emails that actually matter today are already sitting in your inbox. This just puts them on top.
         </p>
-        <p className='font-caveat text-2xl text-amber-900'>— go see it for yourself</p>
-        <button className='bg-slate-900 text-creme p-5 rounded-bl-2xl rounded-tr-2xl w-fit hover:cursor-pointer' onClick={handleLogin}>Connect Your Gmail</button>
+        <p className='font-caveat md:text-2xl text-amber-900'>— go see it for yourself</p>
+        <button className='bg-slate-900 text-creme p-2 md:p-5 rounded-bl-2xl rounded-tr-2xl w-fit hover:cursor-pointer' onClick={handleLogin}>Connect Your Gmail</button>
       </div>
     </div>
 

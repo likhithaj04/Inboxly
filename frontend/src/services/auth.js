@@ -14,6 +14,8 @@ export function handleLogin() {
 export async function handleLogout() {
   try {
     await api.post('/auth/logout')
+        localStorage.removeItem("isDemo");
+
   } catch (err) {
     console.log('Logout failed', err)
   } finally {

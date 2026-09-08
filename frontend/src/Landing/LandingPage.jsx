@@ -1,6 +1,6 @@
 import maglass from '../assets/mglass.webm'
 import { handleLogin } from '../services/auth';
-import Navbar from '../components/NAvbar';
+import Navbar from '../components/Navbar';
 
 export default function LandingPage() {
   
@@ -15,30 +15,30 @@ export default function LandingPage() {
 
       <div className="flex justify-center items-center lg:gap-40 px-20 flex-wrap md:mb-8">
 
-        <div className="w-152 pt-20 flex flex-col gap-6 text-amber-950">
+        <div className="w-152 md:pt-20 flex flex-col gap-1 md:gap-6 text-amber-950">
           <p className="font-caveat text-3xl -rotate-2">
             no more guessing what's important
           </p>
 
-          <p className="font-fraunces font-bold text-5xl text-black">
+          <p className="font-fraunces font-bold text-xl md:text-5xl text-black">
             Your inbox, sorted like actual mail on a desk.
           </p>
 
-          <p className="font-source text-xl opacity-60">
+          <p className="font-source text-lg md:text-xl opacity-60">
             got tired of scrolling past three things that mattered to find the fourth?
             So I built something that reads what you reply to, open, and ignore —
             and sorts every new email into a tray before you even look.
             Nothing gets thrown out. It just moves to a smaller pile.
           </p>
           <div className='flex gap-3'>
-            <button className='bg-slate-900 text-creme p-5 rounded-bl-2xl rounded-tr-2xl hover:cursor-pointer' onClick={handleLogin}>Connect Your Gmail</button>
+            <button className='bg-slate-900 text-creme p-2 md:p-5 rounded-bl-2xl rounded-tr-2xl hover:cursor-pointer' onClick={handleLogin}>Connect Your Gmail</button>
             <button className='underline underline-offset-8 text-black italic'>See how it decides</button>
           </div>
         </div>
 
         <div className="w-100 flex flex-col gap-10 relative mt-20">
 
-          <div className='border border-black p-6 w-70 font-source border-b-8 border-r-7 -rotate-3 bg-white shadow-[4px_4px_0_0_#000]'>
+          <div className='border border-black  p-2 md:p-6  w-40 md:w-70 font-source border-b-8 border-r-7 -rotate-3 bg-white shadow-[4px_4px_0_0_#000]'>
             <p>
               <span className='text-amber-950 font-bold'>Priority</span><br />
               Priya — contract redline<br />
@@ -49,7 +49,7 @@ export default function LandingPage() {
 
           <div className='flex flex-row items-center gap-10'>
             <video className='w-100' src={maglass} autoPlay loop muted playsInline />
-            <div className='border border-black p-6 w-70 font-source border-b-8 border-r-7 rotate-2 bg-white shadow-[4px_4px_0_0_#000]'>
+            <div className='border border-black p-2 md:p-6 w-40 md:w-70 font-source border-b-8 border-r-7 rotate-2 bg-white shadow-[4px_4px_0_0_#000]'>
               <p>
                 <span className='text-amber-950 font-bold'>Standard</span><br />
                 Figma — new comments<br />
@@ -74,16 +74,16 @@ export default function LandingPage() {
 
       <div className='flex gap-30 p-10 mx-auto items-center  justify-center'>
 
-        <div> <p className="font-caveat text-3xl -rotate-2 text-amber-900"> a note on unread —</p></div>
+        <div> <p className="font-caveat text-xl md:text-3xl -rotate-2 text-amber-900"> a note on unread —</p></div>
         <div className='w-250'>
-          <p className='font-fraunces  text-3xl italic'>Unread was never the same thing as unwanted. Some things you leave for tonight, on purpose.</p>
+          <p className='font-fraunces text-xl md:text-3xl italic'>Unread was never the same thing as unwanted. Some things you leave for tonight, on purpose.</p>
         </div>
       </div>
       <div className='border-b border-black w-3/4 mx-auto h-0.5 my-3'></div>
       {/* to this */}
 
-      <div className="flex justify-center items-center lg:gap-40 px-20 flex-wrap">
-        <div className='flex flex-col gap-10 py-10 items-start w-172'>
+      <div className="flex justify-center items-center lg:gap-40 px-5 md:px-20 flex-wrap">
+        <div className='flex flex-col  gap-4 md:gap-10 py-10 items-start w-172'>
 
           <div className='flex flex-row gap-6 items-start'>
             <h1 className='flex border border-black rounded-full h-17 w-17 shrink-0 items-center justify-center font-fraunces'>1</h1>
@@ -124,10 +124,10 @@ export default function LandingPage() {
       <div className="flex justify-center items-center lg:gap-40 px-20 flex-wrap">
 
         <div className='flex flex-col gap-4 py-10 w-152'>
-          <h1 className='font-fraunces font-semibold text-3xl text-black'>
+          <h1 className='font-fraunces font-semibold text-xl md:text-3xl text-black'>
             Correct it once. It doesn't forget.
           </h1>
-          <p className='font-source text-lg text-amber-950 opacity-70 max-w-md'>
+          <p className='font-source md:text-lg text-amber-950 opacity-70 max-w-md'>
             Pin a note on a sender — "not for me" — and every future email from them settles quietly into Other. No settings menu, no re-training.
           </p>
           <p className='font-source text-lg text-amber-950 opacity-70 max-w-md'>
@@ -150,13 +150,13 @@ export default function LandingPage() {
       <div className='border-2 border-black w-3/4 mx-auto h-0.5 my-3'></div>
 
       {/* CLOSING */}
-      <div className="flex justify-center items-center lg:gap-40 md:p-8 flex-wrap">
+      <div className="flex justify-center items-center lg:gap-40 md:p-8 flex-wrap mb-2">
         
-        <p className='font-fraunces italic text-2xl max-w-xl text-black'>
+        <p className='font-fraunces italic px-2 md:text-2xl max-w-xl text-black'>
           Somewhere your inbox already knows which three emails actually matter today. This just puts them at the top of the pile.
         </p>
         <div className='flex gap-4'>
-           <p className='font-caveat text-2xl text-amber-900'>— now go find them</p>
+           <p className='font-caveat md:text-2xl text-amber-900'>— now go find them</p>
         <button className='bg-slate-900 text-creme p-5 rounded-bl-2xl rounded-tr-2xl w-fit hover:cursor-pointer' onClick={handleLogin}>Connect Your Gmail</button>
         </div>
        

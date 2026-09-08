@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { handleLogin } from '../services/auth'
 import api from '../services/api'
 
 export default function Navbar() {
@@ -12,6 +11,8 @@ export default function Navbar() {
       try {
         const res = await api.get("/auth/me")
         setUser(res.data.user)
+        // console.log(user);
+        
       } catch (err) {
         setUser(null)
       }
@@ -23,11 +24,15 @@ export default function Navbar() {
     navigate("/home")
   }
 
+  function handleLogin() {
+    navigate('/login')
+  }
+
   return (
     <div className='flex p-2 justify-between md:mr-28'>
       <div className='p-2 md:ml-90'>
         <Link to='/'>
-          <h1 className='font-black text-4xl text-blues font-fraunces'>EMAIL-AGENT</h1>
+          <h1 className='font-black text-s md:text-4xl text-blues font-fraunces'>EMAIL-AGENT</h1>
         </Link>
       </div>
       <div className='p-4'>
