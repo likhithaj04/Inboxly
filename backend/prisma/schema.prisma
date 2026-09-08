@@ -77,14 +77,13 @@ model SavedEmails {
   id          String    @id @default(cuid())
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String
-  gmailId     String?
+  gmailId     String
   threadId    String?
   from        String?
   to          String?
   subject     String
   body        String
   score       Float
-  priority    String?
   emailDate   DateTime?
   isImportant Boolean
   createdAt   DateTime  @default(now())
@@ -104,7 +103,6 @@ model TemporaryEmail {
   subject   String?
   snippet   String?
   body      String?
-  priority  String
   score     Float
   emailDate DateTime?
   createdAt DateTime  @default(now())

@@ -2,17 +2,16 @@ import { google } from "googleapis";
 import authclient from "../config/authConfig.js";
 import prisma from '../config/dbCongfig.js'
 import jwt from 'jsonwebtoken'
-import bcrypt from 'bcryptjs'
 import { Router } from "express";
+import { authLimiter } from "../Middleware/rateLimitter.js";
 import authMiddleware from "../Middleware/authMiddleware.js";
-
 const router = Router();
 
 
 
-router.get("/google", (req, res) => {
+router.get("/google", authLimiter, (req, res) => {
   try {
-    console.log("hit");
+    console.log("auth1 hit");
 
     const authurl = authclient.generateAuthUrl({
       access_type: 'offline',
@@ -32,9 +31,9 @@ router.get("/google", (req, res) => {
 
 
 })
-router.get("/google/callback", async (req, res) => {
+router.get("/google/callback", authLimiter, async (req, res) => {
   try {
-    // console.log("hit");
+    console.log("Auth hit");
     const { code } = req.query;
     // console.log("code recived", code)
 
@@ -144,7 +143,47 @@ router.get("/google/callback", async (req, res) => {
 })
 
 
+router.post("/logout",(req,res)=>{
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: false, // must match how you originally set it
+    sameSite: 'strict',                                 // must match how you originally set it
+  })
+  res.status(200).json({ message: 'Logged out' })
+})
 
+
+router.get("/me", authMiddleware, async (req, res) => {
+  try {
+
+    const user = await prisma.user.findUnique({
+      where: {
+        id: req.user.id
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        googleId: true
+      }
+    })
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found"
+      });
+    }
+
+    res.json({
+      user
+    });
+
+  } catch (err) {
+    console.log(err);
+    res.status(401).json({ message: "user not found" })
+
+  }
+})
 
 
 export default router;

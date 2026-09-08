@@ -3,6 +3,7 @@ const router=Router()
 
 import analyzeEmails from "../services/emailBehaviourService.js";
 import authMiddleware from "../Middleware/authMiddleware.js";
+
 // import emailFilterService from "../services/emailFilterService.js";
 
 // import prisma from "../config/dbCongfig";
@@ -12,37 +13,9 @@ import authMiddleware from "../Middleware/authMiddleware.js";
 // import retrieveKeywordStat from "../services/keywordStatService.js";
 // import updateKeywordStats from "../services/keywordUpdateService.js";
 // import getEmailSync from '../services/emailSyncService.js'
-// router.get("/me", authMiddleware, async (req, res) => {
-//   try {
 
-//     const user = await prisma.user.findUnique({
-//       where: {
-//         id: req.user.id
-//       },
-//       select: {
-//         id: true,
-//         name: true,
-//         email: true,
-//         googleId: true
-//       }
-//     })
 
-//     if (!user) {
-//       return res.status(404).json({
-//         message: "User not found"
-//       });
-//     }
 
-//     res.json({
-//       user
-//     });
-
-//   } catch (err) {
-//     console.log(err);
-//     res.status(401).json({ message: "user not found" })
-
-//   }
-// })
 
 
 router.get("/api/gmail",authMiddleware,async(req,res)=>{
