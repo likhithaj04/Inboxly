@@ -135,7 +135,7 @@ res.cookie("token", jwt_token, {
 });
     
     // res.redirect('http://localhost:5173/home'); 
-        res.redirect('https://inboxly-qccz.onrender.com/home'); 
+        res.redirect('https://inboxly-steel.vercel.app/home'); 
 
     // res.status(200).json({ message: "Login successful" })
 
