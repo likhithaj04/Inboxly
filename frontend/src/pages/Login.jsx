@@ -2,12 +2,15 @@ import { handleLogin } from '../services/auth'
 import { useNavigate } from 'react-router-dom'
 import api from '../services/api'
 import { toast } from 'react-toastify'
+import { useState } from 'react'
 
 export default function Login() {
+  const [loading,setLoading]=useState(false)
   const navigate = useNavigate()
 
   async function handleDemoLogin() {
     try {
+      setLoading(true)
     const res=  await api.post('/auth/demoLogin',{
         name:"Demo User",
         email:" demo@example.com"
@@ -16,6 +19,7 @@ export default function Login() {
 
       if (res.data.isDemo) {
   localStorage.setItem("isDemo", "true");
+
 }
       navigate('/home')
     } catch (err) {
@@ -64,7 +68,7 @@ export default function Login() {
             onClick={handleDemoLogin}
             className='bg-white border-2 border-black text-black font-source text-sm p-3.5 rounded-bl-2xl rounded-tr-2xl hover:bg-black hover:text-creme hover:cursor-pointer'
           >
-            Enter as demo user
+            {loading?"loading your emails":"Enter as demo user"}
           </button>
         </div>
 

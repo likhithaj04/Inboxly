@@ -146,11 +146,13 @@ res.cookie("token", jwt_token, {
 
 
 router.post("/logout",(req,res)=>{
-  res.clearCookie('token', {
-    httpOnly: true,
-    secure: false, // must match how you originally set it
-    sameSite: 'strict',                                 // must match how you originally set it
-  })
+  const isProduction = process.env.NODE_ENV === "production";
+
+res.clearCookie("token", {
+  httpOnly: true,
+  secure: isProduction,
+  sameSite: isProduction ? "none" : "strict"
+});
   res.status(200).json({ message: 'Logged out' })
 })
 
