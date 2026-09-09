@@ -134,7 +134,9 @@ res.cookie("token", jwt_token, {
   maxAge: 7200000
 });
     
-    res.redirect('http://localhost:5173/home'); 
+    // res.redirect('http://localhost:5173/home'); 
+        res.redirect('https://inboxly-qccz.onrender.com/home'); 
+
     // res.status(200).json({ message: "Login successful" })
 
 
