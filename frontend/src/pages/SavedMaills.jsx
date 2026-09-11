@@ -94,7 +94,7 @@ export default function SavedMails() {
             <div key={email.id} className={`p-3 sm:p-4 border-b border-stone-200 last:border-b-0 ${isActive ? 'bg-stone-50' : ''}`}>
               <div className='flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-0.5 sm:gap-0'>
                 <span className='font-source text-sm font-medium truncate'>{email.from}</span>
-                <span className='font-source text-xs text-stone-500 shrink-0'>{email.date}</span>
+                <span className='font-source text-xs text-stone-500 shrink-0'>{email.emailDate}</span>
               </div>
               <span className='font-source text-xs text-stone-500 block truncate'>to {email.to}</span>
 
