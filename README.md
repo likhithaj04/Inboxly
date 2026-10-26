@@ -181,7 +181,6 @@ Use Google sign-in to authenticate and connect the application to the appropriat
 - Detection of emails requiring a reply or follow-up.
 - Extraction of deadlines, tasks, and action items.
 - Personalized priority scoring that improves with user feedback.
-- Advanced search and filtering.
 - Improved background processing for large inboxes.
 - User-configurable prioritization rules.
 
